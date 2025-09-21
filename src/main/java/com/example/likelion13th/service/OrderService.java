@@ -8,6 +8,7 @@ import com.example.likelion13th.domain.Product;
 import com.example.likelion13th.dto.request.*;
 import com.example.likelion13th.dto.response.OrderResponseDto;
 import com.example.likelion13th.dto.response.ProductResponseDto;
+import com.example.likelion13th.enums.DeliverStatus;
 import com.example.likelion13th.repository.CouponRepository;
 import com.example.likelion13th.repository.MemberRepository;
 import com.example.likelion13th.repository.OrdersRepository;
@@ -97,6 +98,10 @@ public class OrderService {
         Orders orders = orderRepository.findById(orderId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 주문정보가 존재하지 않습니다."));
 
+        if (orders.getDeliverStatus() != DeliverStatus.PREPARATION) {
+            throw new IllegalStateException("배송이 준비 중(PREPARATION) 상태일 때만 수정 가능합니다.");
+        }
+
         orders.update(dto.getDeliverStatus(), dto.getRecipient(), dto.getPhonenumber(),
                 dto.getStreetaddress(), dto.getDetailedaddress(), dto.getPhonenumber());
 
@@ -108,6 +113,10 @@ public class OrderService {
 
         Orders orders = orderRepository.findById(orderId)
                 .orElseThrow(() -> new IllegalArgumentException("주문내역을 찾을 수 없습니다."));
+
+        if (orders.getDeliverStatus() != DeliverStatus.COMPLETED) {
+            throw new IllegalStateException("배송이 완료(COMPLETED)된 주문만 삭제 가능합니다.");
+        }
 
         orderRepository.delete(orders);
     }

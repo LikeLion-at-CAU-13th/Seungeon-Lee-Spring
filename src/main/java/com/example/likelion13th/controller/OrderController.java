@@ -45,6 +45,6 @@ public class OrderController {
     public ResponseEntity<String> deleteOrder(@PathVariable Long id,
                                                 @RequestBody OrderDeleteRequestDto dto) {
         orderService.deleteOrders(id, dto);
-        return ResponseEntity.ok("주문 정보가 성공적으로 삭제되었습니다.");
+        return ResponseEntity.noContent().build();
     }
 }

@@ -1,7 +1,8 @@
 package com.example.likelion13th.dto.response;
 
 import com.example.likelion13th.domain.Mapping.ProductOrders;
-import com.example.likelion13th.domain.Orders;
+import com.example.likelion13th.domain.Order;
+import com.example.likelion13th.enums.DeliverStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,33 +12,33 @@ import lombok.Getter;
 @AllArgsConstructor
 public class OrderResponseDto {
 
+    private DeliverStatus deliverStatus;
     private Long orderId;
     private Long buyerId;
     private Long productId;
     private int quantity;
     private Long couponId;
     private String recipient;
-    private String phonenumber;
-    private String streetaddress;
-    private String detailedaddress;
+    private String phoneNumber;
+    private String streetAddress;
+    private String detailedAddress;
     private String postalCode;
 
-    public static OrderResponseDto fromEntity(Orders orders) {
-        ProductOrders productOrder = orders.getProductOrders().get(0);
+    public static OrderResponseDto fromEntity(Order order) {
+        ProductOrders productOrder = order.getProductOrders().get(0);
 
         return OrderResponseDto.builder()
-                .orderId(orders.getId())
-                .buyerId(orders.getBuyer().getId())
+                .deliverStatus(order.getDeliverStatus())
+                .orderId(order.getId())
+                .buyerId(order.getBuyer().getId())
                 .productId(productOrder.getProduct().getId())
                 .quantity(productOrder.getQuantity())
-                .couponId(orders.getCoupon() != null ? orders.getCoupon().getId() : null)
-                .recipient(orders.getRecipient())
-                .phonenumber(orders.getPhonenumber())
-                .streetaddress(orders.getStreetaddress())
-                .detailedaddress(orders.getDetailedaddress())
-                .postalCode(orders.getPostalCode())
+                .couponId(order.getCoupon() != null ? order.getCoupon().getId() : null)
+                .recipient(order.getRecipient())
+                .phoneNumber(order.getPhoneNumber())
+                .streetAddress(order.getStreetAddress())
+                .detailedAddress(order.getDetailedAddress())
+                .postalCode(order.getPostalCode())
                 .build();
     }
-
-
 }

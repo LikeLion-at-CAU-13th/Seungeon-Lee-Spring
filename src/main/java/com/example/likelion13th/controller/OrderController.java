@@ -25,24 +25,24 @@ public class OrderController {
 
     // 전체 상품 조회
     @GetMapping
-    public ResponseEntity<List<OrderResponseDto>> getAllProducts() {
+    public ResponseEntity<List<OrderResponseDto>> getAllOrders() {
         return ResponseEntity.ok(orderService.getAllOrders());
     }
 
     // 특정 상품 조회
     @GetMapping("/{id}")
-    public ResponseEntity<OrderResponseDto> getProductById(@PathVariable Long id) {
+    public ResponseEntity<OrderResponseDto> getOrderById(@PathVariable Long id) {
         return ResponseEntity.ok(orderService.getOrdersById(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<OrderResponseDto> updateProduct(@PathVariable Long id,
+    public ResponseEntity<OrderResponseDto> updateOrder(@PathVariable Long id,
                                                             @RequestBody OrderUpdateRequestDto dto) {
         return ResponseEntity.ok(orderService.UpdateOrders(id, dto));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteProduct(@PathVariable Long id,
+    public ResponseEntity<String> deleteOrder(@PathVariable Long id,
                                                 @RequestBody OrderDeleteRequestDto dto) {
         orderService.deleteOrders(id, dto);
         return ResponseEntity.ok("주문 정보가 성공적으로 삭제되었습니다.");

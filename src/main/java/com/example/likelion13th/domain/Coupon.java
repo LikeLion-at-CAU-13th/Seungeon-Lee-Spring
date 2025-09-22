@@ -22,6 +22,6 @@ public class Coupon extends BaseTimeEntity {
 
     @OneToOne
     @JoinColumn(name = "order_id", nullable = true)
-    private Orders orders;
+    private Order order;
 
 }

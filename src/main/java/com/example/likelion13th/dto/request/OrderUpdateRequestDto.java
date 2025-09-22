@@ -7,8 +7,8 @@ import lombok.Getter;
 public class OrderUpdateRequestDto {
     private DeliverStatus deliverStatus;
     private String recipient;
-    private String phonenumber;
-    private String streetaddress;
-    private String detailedaddress;
+    private String phoneNumber;
+    private String streetAddress;
+    private String detailedAddress;
     private String postalCode;
 }

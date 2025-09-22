@@ -1,13 +1,12 @@
 package com.example.likelion13th.domain.Mapping;
 
-import com.example.likelion13th.domain.Orders;
+import com.example.likelion13th.domain.Order;
 import com.example.likelion13th.domain.Product;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
 @Getter
-@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,7 +22,7 @@ public class ProductOrders {
 
     @ManyToOne
     @JoinColumn(name = "orders_id")
-    private Orders orders;
+    private Order order;
 
     private Integer quantity; // 구매 수량
 }

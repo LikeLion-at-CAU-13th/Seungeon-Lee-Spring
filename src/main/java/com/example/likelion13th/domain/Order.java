@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,7 +16,8 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Orders extends BaseTimeEntity {
+@Table(name = "\"ORDER\"")
+public class Order extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,25 +30,32 @@ public class Orders extends BaseTimeEntity {
     @JoinColumn(name ="buyer_id")
     private Member buyer;
 
-    @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
-    private List<ProductOrders> productOrders;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<ProductOrders> productOrders = new ArrayList<>();
 
-    @OneToOne(mappedBy = "orders", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private Coupon coupon;
 
     private String recipient;
-    private String phonenumber;
-    private String streetaddress;
-    private String detailedaddress;
+    private String phoneNumber;
+    private String streetAddress;
+    private String detailedAddress;
     private String postalCode;
 
-    public void update(DeliverStatus deliverStatus, String recipient, String phonenumber, String streetaddress,
-    String detailedaddress, String postalCode) {
+    public void update(
+            DeliverStatus deliverStatus,
+            String recipient,
+            String phoneNumber,
+            String streetAddress,
+            String detailedAddress,
+            String postalCode
+    ) {
         this.deliverStatus = deliverStatus;
         this.recipient = recipient;
-        this.phonenumber = phonenumber;
-        this.streetaddress = streetaddress;
-        this.detailedaddress = detailedaddress;
+        this.phoneNumber = phoneNumber;
+        this.streetAddress = streetAddress;
+        this.detailedAddress = detailedAddress;
         this.postalCode = postalCode;
     }
 }

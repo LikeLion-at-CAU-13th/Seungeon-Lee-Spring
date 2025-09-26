@@ -1,6 +1,7 @@
 package com.example.likelion13th.domain;
 
 import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,6 +25,7 @@ public class Coupon extends BaseTimeEntity {
     private Boolean isUsed; // 쿠폰 사용 여부
 
     @OneToOne
-    @JoinColumn(name = "order_id")
-    private Orders orders;
+    @JoinColumn(name = "order_id", nullable = true)
+    private Order order;
+
 }

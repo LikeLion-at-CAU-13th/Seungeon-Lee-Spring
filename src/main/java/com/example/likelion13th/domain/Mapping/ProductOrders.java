@@ -24,8 +24,8 @@ public class ProductOrders {
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Orders orders;
+    @JoinColumn(name = "orders_id")
+    private Order order;
 
-    private Integer quantity;
+    private Integer quantity; // 구매 수량
 }

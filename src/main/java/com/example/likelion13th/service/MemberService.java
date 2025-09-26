@@ -33,6 +33,7 @@ public class MemberService {
 
         // 유저 정보 저장
         memberRepository.save(member);
+    }
 
 
     public Page<Member> getMembersByPage(int page, int size) {

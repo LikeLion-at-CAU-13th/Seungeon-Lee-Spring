@@ -17,6 +17,7 @@ import java.util.Map;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+
     // 비밀번호 인코더 DI(생성자 주입)
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -32,5 +33,20 @@ public class MemberService {
 
         // 유저 정보 저장
         memberRepository.save(member);
+
+
+    public Page<Member> getMembersByPage(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("name").ascending());
+        return memberRepository.findAll(pageable);
+    }
+
+    public Page<Member> getMembersByAge(int minAge, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("name").ascending());
+        return memberRepository.findByAgeGreaterThanEqual(minAge, pageable);
+    }
+
+    public Page<Member> getMembersStartingWith(String prefix, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("name").ascending());
+        return memberRepository.findByNameStartingWith(prefix, pageable);
     }
 }

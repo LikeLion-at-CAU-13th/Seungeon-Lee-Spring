@@ -24,7 +24,6 @@ public class MemberService {
     public void join(JoinRequestDto joinRequestDto) {
         // 해당 name이 이미 존재하는 경우
         if (memberRepository.existsByName(joinRequestDto.getName())){
-            System.out.println("들어왔다!!!!!!!!!");
             throw new MemberAlreadyExistsException("이미 존재하는 사용자 입니다.");
         }
 

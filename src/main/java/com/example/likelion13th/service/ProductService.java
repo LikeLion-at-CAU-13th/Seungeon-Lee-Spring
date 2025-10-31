@@ -1,10 +1,12 @@
 package com.example.likelion13th.service;
 
 import com.example.likelion13th.domain.Member;
+import com.example.likelion13th.domain.Order;
 import com.example.likelion13th.domain.Product;
 import com.example.likelion13th.dto.request.ProductDeleteRequestDto;
 import com.example.likelion13th.dto.request.ProductRequestDto;
 import com.example.likelion13th.dto.request.ProductUpdateRequestDto;
+import com.example.likelion13th.dto.response.OrderResponseDto;
 import com.example.likelion13th.dto.response.ProductResponseDto;
 import com.example.likelion13th.repository.MemberRepository;
 import com.example.likelion13th.repository.ProductRepository;
@@ -90,4 +92,14 @@ public class ProductService {
         productRepository.delete(product);
     }
 
+    @Transactional
+    public ProductResponseDto getMyProducts(String name){
+        Member member = memberRepository.findByName(name)
+                .orElseThrow(() -> new IllegalArgumentException("해당 회원이 존재하지 않습니다."));
+
+        Product product = productRepository.findById(member.getId())
+                .orElseThrow(() -> new IllegalArgumentException("해당 회원에 해당하는 상품이 존재하지 않습니다."));
+
+        return ProductResponseDto.fromEntity(product);
+    }
 }

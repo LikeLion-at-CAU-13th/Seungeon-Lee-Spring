@@ -2,6 +2,7 @@ package com.example.likelion13th.domain;
 
 import com.example.likelion13th.enums.Role;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,8 @@ import java.util.Set;
 @Entity
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Member {
 
     @Id
@@ -19,6 +22,7 @@ public class Member {
     private Long id;
 
     private String name;
+    private String password;
     private String address;
     private String email;
     private String phoneNumber;

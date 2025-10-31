@@ -14,4 +14,7 @@ public interface MemberRepository extends JpaRepository<Member, Long>
     Optional<Member> findByEmail(String email);
     Page<Member> findByAgeGreaterThanEqualOrderByNameAsc(Integer age, Pageable pageable);
     Page<Member> findByNameStartingWithOrderByNameAsc(String prefix, Pageable pageable);
+
+    // 이름 중복 검사 쿼리
+    boolean existsByName(String name);
 }

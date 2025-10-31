@@ -1,9 +1,12 @@
 package com.example.likelion13th.controller;
 
+import com.example.likelion13th.config.PrincipalHandler;
 import com.example.likelion13th.domain.Member;
+import com.example.likelion13th.domain.Product;
 import com.example.likelion13th.dto.request.ProductDeleteRequestDto;
 import com.example.likelion13th.dto.request.ProductRequestDto;
 import com.example.likelion13th.dto.request.ProductUpdateRequestDto;
+import com.example.likelion13th.dto.response.OrderResponseDto;
 import com.example.likelion13th.dto.response.ProductResponseDto;
 import com.example.likelion13th.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -48,5 +51,12 @@ public class ProductController {
                                                 @RequestBody ProductDeleteRequestDto dto) {
         productService.deleteProduct(id, dto);
         return ResponseEntity.ok("상품이 성공적으로 삭제되었습니다.");
+    }
+
+    @GetMapping("/my")
+    public ResponseEntity<ProductResponseDto> getMyName() {
+        String name = PrincipalHandler.getUsernameFromPrincipal();
+
+        return ResponseEntity.ok(productService.getMyProducts(name));
     }
 }

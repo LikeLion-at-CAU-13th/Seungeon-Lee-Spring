@@ -1,6 +1,6 @@
 package com.example.likelion13th.domain.Mapping;
 
-import com.example.likelion13th.domain.Orders;
+import com.example.likelion13th.domain.Order;
 import com.example.likelion13th.domain.Product;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

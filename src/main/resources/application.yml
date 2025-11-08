@@ -1,15 +1,13 @@
 spring:
-    profiles:
-        active: development
-#    datasource:
-#        url: jdbc:h2:tcp://localhost/~/likelion
-#        driver-class-name: org.h2.Driver # H2 드라이버 클래스
-#        username: sa # 기본 사용자 이름
-#        password: # 기본 비밀번호
-#    h2:
-#        console:
-#            enabled: true # H2 콘솔을 활성화합니다.
-#            path: /h2-console # H2 콘솔의 접근 경로
+    datasource:
+        url: jdbc:h2:tcp://localhost/~/likelion
+        driver-class-name: org.h2.Driver # H2 드라이버 클래스
+        username: sa # 기본 사용자 이름
+        password: # 기본 비밀번호
+    h2:
+        console:
+            enabled: true # H2 콘솔을 활성화합니다.
+            path: /h2-console # H2 콘솔의 접근 경로
     jpa:
         hibernate:
             ddl-auto: update

@@ -1,34 +1,24 @@
 spring:
-    datasource:
-        url: jdbc:h2:tcp://localhost/~/likelion
-        driver-class-name: org.h2.Driver # H2 드라이버 클래스
-        username: sa # 기본 사용자 이름
-        password: # 기본 비밀번호
-    h2:
-        console:
-            enabled: true # H2 콘솔을 활성화합니다.
-            path: /h2-console # H2 콘솔의 접근 경로
-    jpa:
-        hibernate:
-            ddl-auto: update
-        properties:
-            hibernate:
-               format_sql: true
-    sql:
-        init:
-            mode: always # 애플리케이션 시작 시 스크립트 초기화 (기본값: embedded)
-    config:
-        import: optional:application-secret.yml
-    security:
-        oauth2:
-            client:
-                registration:
-                    google:
-                        client-id: GOOGLE_CLIENT_ID
-                        client-secret: GOOGLE_CLIENT_SECRET
-                        scope:
-                          - email
-                          - profile
-                        redirect-uri: "http://localhost:8080/login/oauth2/code/google"
-jwt:
-    secret: sbFtZPasDAVAoT187+xU8oNI6DeNTlpVzzg2USsOare/bUBl/G4pTeakdjX/MtvnSSs+fFOOPtXuHr1tpLl4ryEazGpDrReEPX01OO5AJBtr69uPaqBXkA0VCS6PUP5tTRUuCkCILm3EqLyH/chtFtbXbrm4i0nMnQ/rTpFRTGd5ZkMfoD+4o1gKvKA0cmIo065tjmrz77PHiUVcLHQUx2mnEnMkYWieScSAtAntffMCDXtgxAvVXm3bhc9BZDd6yc8R3o36XbyaVZN+vcM3uggnIP9G5CYRXwszJAGOPk2ETn5aOHm9wu1ec2LMEwpXuKAcYAjZMTCAhUEP5E+OYQ==
+  profiles:
+    active: deployment
+  #    datasource:
+  #        url: jdbc:h2:tcp://localhost/~/likelion
+  #        driver-class-name: org.h2.Driver # H2 드라이버 클래스
+  #        username: sa # 기본 사용자 이름
+  #        password: # 기본 비밀번호
+  #    h2:
+  #        console:
+  #            enabled: true # H2 콘솔을 활성화합니다.
+  #            path: /h2-console # H2 콘솔의 접근 경로
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/likelion
+    driver-class-name: org.h2.Driver # H2 드라이버 클래스
+    username: sa # 기본 사용자 이름
+    password: # 기본 비밀번호
+  h2:
+    console:
+      enabled: true # H2 콘솔을 활성화합니다.
+      path: /h2-console # H2 콘솔의 접근 경로
+  jpa:
+    hibernate:
+      ddl-auto: update
